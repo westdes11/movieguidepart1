@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://vscodeedu.com/assets/schema/course-v2.schema.json
 id: lesson1
-title: Lesson
+title: movieguiepart1.py
+description: movieguidepart1
 lessonParts:
   - lessonpart1.yml
