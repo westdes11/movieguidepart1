@@ -8,12 +8,64 @@ contacts:
   - displayName: westdes11
     pictureUrl: https://avatars.githubusercontent.com/u/175260045?v=4
     homePageUrl: https://github.com/westdes11
+files:
+  - path: course1/unit1/lesson1/lessonpart1/movieguidepart1.py
+    content: |-
+      def display_menu():
+          print("\nThe Movie List Program")
+          print("COMMAND MENU")
+          print("list - List all movie titles")
+          print("add  - Add a movie")
+          print("del  - Delete a movie")
+          print("exit - Exit program")
+
+      def init_movie_list():
+          return ["Inception", "The Matrix", "Interstellar"]
+
+      def list_movies(movie_list):
+          if not movie_list:
+              print("There are no movies in the list.")
+          else:
+              for i, movie in enumerate(movie_list, start=1):
+                  print(f"{i}. {movie}")
+
+      def add_movie(movie_list):
+          title = input("Movie: ")
+          movie_list.append(title)
+          print(f"{title} was added.")
+          list_movies(movie_list)
+
+      def delete_movie(movie_list):
+          try:
+              number = int(input("Number: "))
+              if 1 <= number <= len(movie_list):
+                  removed = movie_list.pop(number - 1)
+                  print(f"{removed} was deleted.")
+              else:
+                  print("Invalid movie number.")
+          except ValueError:
+              print("Please enter a valid number.")
+          list_movies(movie_list)
+
+      def main():
+          movie_list = init_movie_list()
+          display_menu()
+
+          while True:
+              command = input("\nCommand: ").lower()
+              if command == "list":
+                  list_movies(movie_list)
+              elif command == "add":
+                  add_movie(movie_list)
+              elif command == "del":
+                  delete_movie(movie_list)
+              elif command == "exit":
+                  print("Bye!")
+                  break
+              else:
+                  print("Not a valid command. Please try again.")
+
+      if __name__ == "__main__":
+          main()
 units:
-  - id: unit1
-    title: Unit 1
-    lessons:
-      - id: lesson1
-        title: Lesson 1
-        lessonParts:
-          - id: lessonpart1
-            title: Page 1
+  - unit1/index.yml
