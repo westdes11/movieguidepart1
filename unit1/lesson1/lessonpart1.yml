@@ -2,117 +2,59 @@
 id: lessonpart1
 title: Page
 content: |
-  Enter your content heredef display\_menu():
+def display_menu():
+    print("\nThe Movie List Program")
+    print("COMMAND MENU")
+    print("list - List all movie titles")
+    print("add  - Add a movie")
+    print("del  - Delete a movie")
+    print("exit - Exit program")
 
-      print("\nThe Movie List Program")
+def init_movie_list():
+    return ["Inception", "The Matrix", "Interstellar"]
 
-      print("COMMAND MENU")
+def list_movies(movie_list):
+    if not movie_list:
+        print("There are no movies in the list.")
+    else:
+        for i, movie in enumerate(movie_list, start=1):
+            print(f"{i}. {movie}")
 
-      print("list - List all movie titles")
+def add_movie(movie_list):
+    title = input("Movie: ")
+    movie_list.append(title)
+    print(f"{title} was added.")
+    list_movies(movie_list)
 
-      print("add  - Add a movie")
+def delete_movie(movie_list):
+    try:
+        number = int(input("Number: "))
+        if 1 <= number <= len(movie_list):
+            removed = movie_list.pop(number - 1)
+            print(f"{removed} was deleted.")
+        else:
+            print("Invalid movie number.")
+    except ValueError:
+        print("Please enter a valid number.")
+    list_movies(movie_list)
 
-      print("del  - Delete a movie")
+def main():
+    movie_list = init_movie_list()
+    display_menu()
 
-      print("exit - Exit program")
+    while True:
+        command = input("\nCommand: ").lower()
+        if command == "list":
+            list_movies(movie_list)
+        elif command == "add":
+            add_movie(movie_list)
+        elif command == "del":
+            delete_movie(movie_list)
+        elif command == "exit":
+            print("Bye!")
+            break
+        else:
+            print("Not a valid command. Please try again.")
 
-  <br />
-
-  def init\_movie\_list():
-
-      return \["Inception", "The Matrix", "Interstellar"]
-
-  <br />
-
-  def list\_movies(movie\_list):
-
-      if not movie\_list:
-
-          print("There are no movies in the list.")
-
-      else:
-
-          for i, movie in enumerate(movie\_list, start=1):
-
-              print(f"{i}. {movie}")
-
-  <br />
-
-  def add\_movie(movie\_list):
-
-      title = input("Movie: ")
-
-      movie\_list.append(title)
-
-      print(f"{title} was added.")
-
-      list\_movies(movie\_list)
-
-  <br />
-
-  def delete\_movie(movie\_list):
-
-      try:
-
-          number = int(input("Number: "))
-
-          if 1 <= number <= len(movie\_list):
-
-              removed = movie\_list.pop(number - 1)
-
-              print(f"{removed} was deleted.")
-
-          else:
-
-              print("Invalid movie number.")
-
-      except ValueError:
-
-          print("Please enter a valid number.")
-
-      list\_movies(movie\_list)
-
-  <br />
-
-  def main():
-
-      movie\_list = init\_movie\_list()
-
-      display\_menu()
-
-  <br />
-
-      while True:
-
-          command = input("\nCommand: ").lower()
-
-          if command == "list":
-
-              list\_movies(movie\_list)
-
-          elif command == "add":
-
-              add\_movie(movie\_list)
-
-          elif command == "del":
-
-              delete\_movie(movie\_list)
-
-          elif command == "exit":
-
-              print("Bye!")
-
-              break
-
-          else:
-
-              print("Not a valid command. Please try again.")
-
-  <br />
-
-  if \_\_name\_\_ == "\_\_main\_\_":
-
-      main()
-showEditor: true
-editors:
-  - course1/unit1/lesson1/lessonpart1/movieguidepart1.py
+if __name__ == "__main__":
+    main()
